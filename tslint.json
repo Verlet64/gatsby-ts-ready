@@ -1,0 +1,16 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-react",
+    "tslint-config-airbnb",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "match-default-export-name": false,
+    "import-name": false,
+    "interface-name": true
+  },
+  "rulesDirectory": []
+}

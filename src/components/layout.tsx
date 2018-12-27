@@ -1,0 +1,61 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
+
+import Header from './header'
+import './layout.css'
+
+interface ILayoutProps {
+  children: JSX.Element[]
+}
+
+interface ILayoutRenderData {
+  site: {
+    siteMetadata: {
+      title: string
+    }
+  },
+  [key: string]: any
+}
+
+const render = (children: JSX.Element[], data: ILayoutRenderData) => {
+  return (
+    <>
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <div
+        style={{
+          margin: `0 auto`,
+          maxWidth: 960,
+          padding: `0px 1.0875rem 1.45rem`,
+          paddingTop: 0,
+        }}
+      >
+        {children}
+        <footer>
+          © 2018, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
+        </footer>
+      </div>
+    </>
+  )
+}
+
+const layout = ({ children }: ILayoutProps) => (
+  <StaticQuery
+    query={graphql`
+      query SiteTitleQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `}
+    render={render.bind(null, children)}
+  />
+)
+
+layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default layout
